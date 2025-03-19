@@ -4,12 +4,15 @@
  */
 package Diseño;
 
+import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
-import Archivos_Planos.RoundBorder;
-import java.awt.Color;
-import javax.swing.JFrame;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Clientes extends javax.swing.JFrame {
+
+    Conexion Conn = new Conexion("postgres", "123456789", "Cafeteria", "5432", "localhost");
 
     fecha f1 = new fecha();
 
@@ -18,16 +21,12 @@ public class Clientes extends javax.swing.JFrame {
         this.setResizable(false);
         setLocationRelativeTo(null);
         mostrarfecha();
-       
-        setSize(1506,800);
-      
-        
-   }
+        setSize(1506, 800);
+
+    }
 
     public void mostrarfecha() {
-
         Fecha_1.setText(f1.fe);
-
     }
 
     /**
@@ -267,6 +266,7 @@ public class Clientes extends javax.swing.JFrame {
         Cliente_Nombres.setText("\n");
         Cliente_Nombres.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        Cliente_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         Cliente_Genero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Cliente_Fechan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -286,6 +286,11 @@ public class Clientes extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -555,8 +560,35 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Conn.Conexionpostgres();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String A = "INSERT INTO \"Cliente\"(\n"
+                + "	\"Cedula\", \"Nombre\", \"FechaDeNacimiento\", \"Genero\", \"Telefono\", \"Email\", \"Direccion\")" + " VALUES ('" + Cliente_Cedula.getText()
+                + "', '" + Cliente_Nombres.getText() + "', '" + Cliente_Fechan.getDate() + "', '" + Cliente_Genero.getSelectedItem() + "', '" + Cliente_Telefono.getText() + "', '"
+                + Cliente_Email.getText() + "','" + Cliente_Direccion.getText() + "');";
+
+        try {
+            Conn.Actualizar(A);
+            Conn.cerrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_agregarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
