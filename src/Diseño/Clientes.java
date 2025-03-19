@@ -6,14 +6,16 @@ package Diseño;
 
 import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class Clientes extends javax.swing.JFrame {
 
     Conexion Conn = new Conexion("postgres", "123456789", "Cafeteria", "5432", "localhost");
-
+    DefaultTableModel X = new DefaultTableModel();
     fecha f1 = new fecha();
 
     public Clientes() {
@@ -22,11 +24,41 @@ public class Clientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mostrarfecha();
         setSize(1506, 800);
+        String[] ids = {"Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "Fecha de Nacimiento"};
+        X.setColumnIdentifiers(ids);
+        Tabla_Clientes.setModel(X);
+        CargarDatos();
 
     }
 
     public void mostrarfecha() {
         Fecha_1.setText(f1.fe);
+    }
+
+    private void CargarDatos() {
+        X.setRowCount(0);
+        try {
+            Conn.Conexionpostgres();
+            String C = "SELECT * FROM \"Cliente\"";
+            ResultSet Rs = Conn.Consultar(C);
+
+            while (Rs.next()) {
+                X.addRow(new Object[]{
+                    Rs.getLong("Cedula"),
+                    Rs.getString("Nombre"),
+                    Rs.getString("Genero"),
+                    Rs.getString("Direccion"),
+                    Rs.getString("Email"),
+                    Rs.getLong("Telefono"),
+                    Rs.getDate("FechaDeNacimiento")
+
+                });
+            }
+            Conn.cerrar();
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -75,18 +107,18 @@ public class Clientes extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Clientes = new javax.swing.JTable();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         Actualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        agregar = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        Salida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,7 +304,12 @@ public class Clientes extends javax.swing.JFrame {
         Cliente_Fechan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Clientes = new javax.swing.JTable(){
+            public boolean isCellEditable(int row , int col){
+                return false;
+            }
+        };
+        Tabla_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -280,35 +317,48 @@ public class Clientes extends javax.swing.JFrame {
                 "Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "FechaNacimiento"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Tabla_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                Tabla_ClientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
+        jScrollPane1.setViewportView(Tabla_Clientes);
+        if (Tabla_Clientes.getColumnModel().getColumnCount() > 0) {
+            Tabla_Clientes.getColumnModel().getColumn(0).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(1).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(2).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(3).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(4).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(5).setResizable(false);
+            Tabla_Clientes.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButton4.setBackground(new java.awt.Color(255, 102, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        Buscar.setBackground(new java.awt.Color(255, 102, 0));
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 0));
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
@@ -316,11 +366,11 @@ public class Clientes extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel13.setText("Actualizar");
 
-        agregar.setBackground(new java.awt.Color(255, 102, 0));
-        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario (3).png"))); // NOI18N
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        Agregar.setBackground(new java.awt.Color(255, 102, 0));
+        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario (3).png"))); // NOI18N
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
+                AgregarActionPerformed(evt);
             }
         });
 
@@ -337,10 +387,10 @@ public class Clientes extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel15.setText("Buscar");
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Salida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
+        Salida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                SalidaActionPerformed(evt);
             }
         });
 
@@ -353,7 +403,7 @@ public class Clientes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(32, 32, 32)))
@@ -381,7 +431,7 @@ public class Clientes extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(Cliente_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,7 +483,7 @@ public class Clientes extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(jLabel15))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -455,7 +505,7 @@ public class Clientes extends javax.swing.JFrame {
                                     .addComponent(Cliente_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -515,7 +565,7 @@ public class Clientes extends javax.swing.JFrame {
                                     .addComponent(jLabel14)
                                     .addComponent(jLabel13)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel12)))
                         .addGap(15, 15, 15))
@@ -524,7 +574,7 @@ public class Clientes extends javax.swing.JFrame {
                             .addComponent(jLabel15)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -555,21 +605,29 @@ public class Clientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void SalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalidaActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_SalidaActionPerformed
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         try {
             Conn.Conexionpostgres();
+
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         String A = "INSERT INTO \"Cliente\"(\n"
                 + "	\"Cedula\", \"Nombre\", \"FechaDeNacimiento\", \"Genero\", \"Telefono\", \"Email\", \"Direccion\")" + " VALUES ('" + Cliente_Cedula.getText()
@@ -579,16 +637,31 @@ public class Clientes extends javax.swing.JFrame {
         try {
             Conn.Actualizar(A);
             Conn.cerrar();
+
         } catch (SQLException ex) {
-            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_AgregarActionPerformed
 
-    }//GEN-LAST:event_agregarActionPerformed
+    private void Tabla_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_ClientesMouseClicked
+        int fila = Tabla_Clientes.getSelectedRow();
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (fila >= 0) {
+            Cliente_Cedula.setText(Tabla_Clientes.getValueAt(fila, 0).toString());
+            Cliente_Nombres.setText(Tabla_Clientes.getValueAt(fila, 1).toString());
+            /*Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 2).toString());*/
+            Cliente_Genero.setSelectedItem(Tabla_Clientes.getValueAt(fila, 3).toString());
+            Cliente_Telefono.setText(Tabla_Clientes.getValueAt(fila, 4).toString());
+            Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 5).toString());
+            Cliente_Direccion.setText(Tabla_Clientes.getValueAt(fila, 6).toString());
+        }
+    }//GEN-LAST:event_Tabla_ClientesMouseClicked
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
 
 
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -604,16 +677,24 @@ public class Clientes extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -627,6 +708,8 @@ public class Clientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Buscar;
     private javax.swing.JTextField Cliente_Cedula;
     private javax.swing.JTextField Cliente_Direccion;
     private javax.swing.JTextField Cliente_Email;
@@ -636,11 +719,10 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField Cliente_Telefono;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTextField Fecha_1;
-    private javax.swing.JButton agregar;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton Salida;
+    private javax.swing.JTable Tabla_Clientes;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -673,7 +755,6 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
