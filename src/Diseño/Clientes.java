@@ -650,11 +650,11 @@ public class Clientes extends javax.swing.JFrame {
         if (fila >= 0) {
             Cliente_Cedula.setText(Tabla_Clientes.getValueAt(fila, 0).toString());
             Cliente_Nombres.setText(Tabla_Clientes.getValueAt(fila, 1).toString());
-            /*Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 2).toString());*/
-            Cliente_Genero.setSelectedItem(Tabla_Clientes.getValueAt(fila, 3).toString());
-            Cliente_Telefono.setText(Tabla_Clientes.getValueAt(fila, 4).toString());
-            Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 5).toString());
-            Cliente_Direccion.setText(Tabla_Clientes.getValueAt(fila, 6).toString());
+            Cliente_Genero.setSelectedItem(Tabla_Clientes.getValueAt(fila, 2).toString());
+            Cliente_Direccion.setText(Tabla_Clientes.getValueAt(fila, 3).toString());
+            Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 4).toString());
+            Cliente_Telefono.setText(Tabla_Clientes.getValueAt(fila, 5).toString());
+            Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 6).toString());
         }
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
 
