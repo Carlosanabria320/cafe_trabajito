@@ -4,16 +4,19 @@
  */
 package Diseño;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+import javax.swing.UIManager;
+
 /**
  *
  * @author SENA
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class Ingredientes extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public Ingredientes() {
         initComponents();
     }
 
@@ -26,21 +29,244 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jSeparator14 = new javax.swing.JSeparator();
+        jLabel63 = new javax.swing.JLabel();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        Fecha_6 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        BuscarCategoria = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Categoria_Descripcion = new javax.swing.JTextArea();
+        Categoria_ID = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel58 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel57 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel59 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla_Categoria = new javax.swing.JTable();
+        jSeparator15 = new javax.swing.JSeparator();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setPreferredSize(new java.awt.Dimension(200, 171));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel36.setFont(new java.awt.Font("Georgia", 0, 20)); // NOI18N
+        jLabel36.setText("AROMA");
+        jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, 40));
+
+        jLabel40.setFont(new java.awt.Font("Georgia", 1, 15)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(204, 102, 0));
+        jLabel40.setText("&");
+        jPanel9.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 20, -1));
+
+        jLabel41.setFont(new java.awt.Font("Impact", 0, 90)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(204, 102, 0));
+        jLabel41.setText("Ingredientes");
+        jPanel9.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+
+        jLabel42.setFont(new java.awt.Font("Georgia", 0, 20)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel42.setText("ESPUMA");
+        jPanel9.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, 40));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel39.setText("NIT: 0012023014403-12");
+        jPanel9.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+
+        jSeparator14.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator14.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel9.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, 12, 150));
+
+        jLabel63.setFont(new java.awt.Font("Impact", 0, 50)); // NOI18N
+        jLabel63.setText("Exportar");
+        jPanel9.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 180, 55));
+
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/xls-file_9680334 (1).png"))); // NOI18N
+        jPanel9.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 100, 80, 55));
+
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo-pdf.png"))); // NOI18N
+        jPanel9.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 100, 80, 55));
+
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 10, 44, 35));
+
+        Fecha_6.setEditable(false);
+        Fecha_6.setBackground(new java.awt.Color(255, 255, 255));
+        Fecha_6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        Fecha_6.setBorder(null);
+        Fecha_6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Fecha_6ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(Fecha_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 131, 31));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.add(BuscarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 30, 370, 30));
+
+        jButton4.setBackground(new java.awt.Color(255, 102, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 84, 40));
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 200, 22));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 340, 22));
+
+        Categoria_Descripcion.setColumns(20);
+        Categoria_Descripcion.setRows(5);
+        Categoria_Descripcion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jScrollPane2.setViewportView(Categoria_Descripcion);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 340, 130));
+
+        Categoria_ID.setText("\n");
+        Categoria_ID.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel5.add(Categoria_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 200, 32));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/id-card_951575.png"))); // NOI18N
+        jLabel5.setText("Id_Ingredientes");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 160, -1));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recipe_649269.png"))); // NOI18N
+        jLabel7.setText("Descripcion De Ingredientes");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/herbal_12719075.png"))); // NOI18N
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 100, 60));
+
+        jLabel58.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel58.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel58.setText("Agregar");
+        jPanel5.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 60, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 102, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/medicine_16127833.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 100, 60));
+
+        jLabel57.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel57.setText("Actualizar");
+        jPanel5.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 102, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/appetite_4884535.png"))); // NOI18N
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 100, 60));
+
+        jLabel59.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel59.setText("Eliminar");
+        jPanel5.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 60, -1));
+
+        Tabla_Categoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id_Ingredientes", "Descripcion De Ingredientes"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Tabla_Categoria);
+        if (Tabla_Categoria.getColumnModel().getColumnCount() > 0) {
+            Tabla_Categoria.getColumnModel().getColumn(0).setResizable(false);
+            Tabla_Categoria.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 560, 310));
+
+        jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel5.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 12, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1274, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void Fecha_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Fecha_6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Fecha_6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -51,32 +277,58 @@ public class NewJFrame extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         try {
+            // UIManager.setLookAndFeel(new FlatLightLaf());
+
+            FlatLightOwlIJTheme.setup();
+            UIManager.put("Button.arc", 200);
+
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new Ingredientes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField BuscarCategoria;
+    private javax.swing.JTextArea Categoria_Descripcion;
+    private javax.swing.JTextField Categoria_ID;
+    private javax.swing.JTextField Fecha_6;
+    private javax.swing.JTable Tabla_Categoria;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
     // End of variables declaration//GEN-END:variables
 }

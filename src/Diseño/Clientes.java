@@ -316,7 +316,6 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 450, 22));
         jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 169, 22));
 
-        Cliente_Fechan.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 200, 32));
         jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 200, 22));
@@ -431,7 +430,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1474, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
