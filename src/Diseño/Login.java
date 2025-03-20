@@ -4,9 +4,7 @@
  */
 package Diseño;
 
-import Diseño.Menu;
 import Archivos_Planos.fecha;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 import javax.swing.UIManager;
 
 public class Login extends javax.swing.JFrame {
@@ -308,15 +306,7 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            // UIManager.setLookAndFeel(new FlatLightLaf());
-
-            FlatLightOwlIJTheme.setup();
-            UIManager.put("Button.arc", 200);
-
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */

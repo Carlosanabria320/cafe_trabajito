@@ -7,6 +7,7 @@ package Diseño;
 import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+import java.awt.Rectangle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,6 +36,38 @@ public class Clientes extends javax.swing.JFrame {
 
     public void mostrarfecha() {
         Fecha_1.setText(f1.fe);
+    }
+
+    public void Sugerencia(String cad) {
+        try {
+            Conn.Conexionpostgres();
+            String S = "SELECT * FROM \"Cliente\" WHERE \"Nombre\" LIKE '" + cad + "%'";
+            ResultSet Rs = Conn.Consultar(S);
+            String Columnas[] = {
+                "Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "Fecha de Nacimiento"
+            };
+            DefaultTableModel ModeloCliente = new DefaultTableModel(Columnas, 0);
+            Tabla_Clientes.setModel(ModeloCliente);
+
+            while (Rs.next()) {
+                X.addRow(new Object[]{
+                    Rs.getLong("Cedula"),
+                    Rs.getString("Nombre"),
+                    Rs.getString("Genero"),
+                    Rs.getString("Direccion"),
+                    Rs.getString("Email"),
+                    Rs.getLong("Telefono"),
+                    Rs.getDate("FechaDeNacimiento")
+
+                });
+            }
+            Rs.close();
+            Conn.cerrar();
+
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private void CargarDatos() {
@@ -112,7 +145,7 @@ public class Clientes extends javax.swing.JFrame {
         Tabla_Clientes = new javax.swing.JTable();
         jSeparator4 = new javax.swing.JSeparator();
         Buscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        Cliente_Buscar = new javax.swing.JTextField();
         Actualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
@@ -374,17 +407,27 @@ public class Clientes extends javax.swing.JFrame {
 
         Buscar.setBackground(new java.awt.Color(255, 102, 0));
         Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 50));
-
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 517, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 50));
+
+        Cliente_Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Cliente_BuscarKeyReleased(evt);
+            }
+        });
+        jPanel1.add(Cliente_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 517, 30));
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 0));
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 467, 120, 70));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -411,6 +454,11 @@ public class Clientes extends javax.swing.JFrame {
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 0));
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura.png"))); // NOI18N
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 467, 120, 70));
 
         Salida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
@@ -493,14 +541,94 @@ public class Clientes extends javax.swing.JFrame {
             Cliente_Direccion.setText(Tabla_Clientes.getValueAt(fila, 3).toString());
             Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 4).toString());
             Cliente_Telefono.setText(Tabla_Clientes.getValueAt(fila, 5).toString());
-            Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 6).toString());
+
+            java.sql.Date fecha = (java.sql.Date) Tabla_Clientes.getValueAt(fila, 6);
+            java.util.Date fechatransformada = new java.util.Date(fecha.getTime());
+            Cliente_Fechan.setDate(fechatransformada);
         }
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void Cliente_BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Cliente_BuscarKeyReleased
+        String Cad = Buscar.getText().trim();
+        Sugerencia(Cad);
+    }//GEN-LAST:event_Cliente_BuscarKeyReleased
 
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int filaseleccionada = Tabla_Clientes.getSelectedRow();
+        if (filaseleccionada >= 0) {
 
-    }//GEN-LAST:event_jTextField1KeyReleased
+            int ValorEliminar = Integer.parseInt(X.getValueAt(filaseleccionada, 0).toString());
+            X.removeRow(filaseleccionada);
+
+            try {
+                Conn.Conexionpostgres();
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            String E = "DELETE FROM public.\"Cliente\"\n" + "WHERE \"Cedula\"=" + (ValorEliminar);
+
+            try {
+                Conn.Actualizar(E);
+                Conn.cerrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        try {
+            Conn.Conexionpostgres();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String U = "UPDATE public.\"Cliente\" SET "
+                + "\"Cedula\" = '" + Cliente_Cedula.getText() + "',"
+                + "\"Nombre\" = '" + Cliente_Nombres.getText() + "',"
+                + "\"FechaDeNacimiento\" = '" + new java.sql.Date(Cliente_Fechan.getDate().getTime()) + "',"
+                + "\"Genero\" = '" + Cliente_Genero.getSelectedItem().toString() + "',"
+                + "\"Telefono\" = '" + Cliente_Telefono.getText() + "',"
+                + "\"Email\" = '" + Cliente_Email.getText() + "',"
+                + "\"Direccion\" = '" + Cliente_Direccion.getText() + "'"
+                + "WHERE \"Cedula\" = '" + Cliente_Cedula.getText() + "'";
+
+        try {
+            Conn.Actualizar(U);
+            Conn.cerrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        long Cedula = Long.parseLong(Cliente_Buscar.getText());
+        
+        try {
+            Conn.Conexionpostgres();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String B = "SELECT FROM \"Cliente\" " + "WHERE \"Cedula\" = '" + Cliente_Cedula.getText() + "'";
+        try (ResultSet Rs = Conn.Consultar(B)) {
+            if (Rs.next()) {
+                boolean find = false;
+
+                for (int i = 0; i < X.getRowCount(); i++) {
+                    if (X.getValueAt(i, 0).equals(Cedula)) {
+                        Tabla_Clientes.setRowSelectionInterval(i, i);
+                        Tabla_Clientes.scrollRectToVisible(new Rectangle(Tabla_Clientes.getCellRect(i, 0, true)));
+                        find = true;
+                        break;
+                    }
+                }
+            }
+            Conn.cerrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -534,6 +662,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton Actualizar;
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Buscar;
+    private javax.swing.JTextField Cliente_Buscar;
     private javax.swing.JTextField Cliente_Cedula;
     private javax.swing.JTextField Cliente_Direccion;
     private javax.swing.JTextField Cliente_Email;
@@ -578,6 +707,5 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -67,7 +67,12 @@ public class Conexion {
     }
 
     public void Actualizar(String Actualiza) throws SQLException {
-        int S = sentencia.executeUpdate(Actualiza);
+        sentencia.executeUpdate(Actualiza);
+    }
+    public int Actualizar1(String Actualiza) throws SQLException {
+        int S = (sentencia.executeUpdate(Actualiza));
+        
+        return S;
     }
 
     public void Conexionpostgres() throws ClassNotFoundException,
