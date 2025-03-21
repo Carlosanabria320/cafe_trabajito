@@ -4,11 +4,20 @@
  */
 package Diseño;
 
+import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 public class Empleados extends javax.swing.JFrame {
+
+    Conexion Conn = new Conexion("postgres", "123456789", "Cafeteria", "5432", "localhost");
+    DefaultTableModel Y = new DefaultTableModel();
 
     fecha f1 = new fecha();
 
@@ -16,13 +25,71 @@ public class Empleados extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
+        String[] ids = {"Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "Fecha de Nacimiento", "Fecha de Ingreso"};
+        Tabla_Empleado.setModel(Y);
+        Y.setColumnIdentifiers(ids);
         mostrarfecha();
+        CargarDatos();
     }
 
     public void mostrarfecha() {
-
         Fecha_6.setText(f1.fe);
+    }
 
+    public void Sugerencia(String cad) {
+        try {
+            Conn.Conexionpostgres();
+            String S = "SELECT * FROM \"Empleado\" WHERE \"Nombre\" LIKE '" + cad + "%'";
+            ResultSet Rs = Conn.Consultar(S);
+
+            String Columnas[] = {"Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "Fecha de Nacimiento", "Fecha de Ingreso"};
+            DefaultTableModel ModelEmpleado = new DefaultTableModel(Columnas, 0);
+            Tabla_Empleado.setModel(ModelEmpleado);
+            while (Rs.next()) {
+                ModelEmpleado.addRow(new Object[]{
+                    Rs.getLong("Cedula"),
+                    Rs.getString("Nombre"),
+                    Rs.getString("Genero"),
+                    Rs.getString("Direccion"),
+                    Rs.getString("Email"),
+                    Rs.getLong("Telefono"),
+                    Rs.getDate("FechaDeNacimiento"),
+                    Rs.getDate("FechaDeIngreso")
+
+                });
+            }
+            Rs.close();
+            Conn.cerrar();
+
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void CargarDatos() {
+        Y.setRowCount(0);
+        try {
+            Conn.Conexionpostgres();
+            String C = "SELECT * FROM \"Empleado\"";
+            ResultSet Rs = Conn.Consultar(C);
+
+            while (Rs.next()) {
+                Y.addRow(new Object[]{
+                    Rs.getLong("Cedula"),
+                    Rs.getString("Nombre"),
+                    Rs.getString("Genero"),
+                    Rs.getString("Direccion"),
+                    Rs.getString("Email"),
+                    Rs.getLong("Telefono"),
+                    Rs.getDate("FechaDeNacimiento"),
+                    Rs.getDate("FechaDeIngreso")
+                });
+            }
+            Rs.close();
+            Conn.cerrar();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -51,9 +118,9 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        Cliente_Telefono = new javax.swing.JTextField();
-        Cliente_Email = new javax.swing.JTextField();
-        Cliente_Direccion = new javax.swing.JTextField();
+        Empleado_Telefono = new javax.swing.JTextField();
+        Empleado_Email = new javax.swing.JTextField();
+        Empleado_Direccion = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
@@ -61,9 +128,9 @@ public class Empleados extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        Cliente_Cedula = new javax.swing.JTextField();
-        Cliente_Nombres = new javax.swing.JTextField();
-        Cliente_Genero = new javax.swing.JComboBox<>();
+        Empleado_Cedula = new javax.swing.JTextField();
+        Empleado_Nombres = new javax.swing.JTextField();
+        Empleado_Genero = new javax.swing.JComboBox<>();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         Empleado_Fechan = new com.toedter.calendar.JDateChooser();
@@ -71,21 +138,21 @@ public class Empleados extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Empleado = new javax.swing.JTable();
         jSeparator14 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
+        Empleado_Buscar = new javax.swing.JTextField();
+        Actualizar = new javax.swing.JButton();
         jLabel57 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jLabel62 = new javax.swing.JLabel();
-        Empleado_Fechan1 = new com.toedter.calendar.JDateChooser();
+        Empleado_FechaR = new com.toedter.calendar.JDateChooser();
         jLabel61 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
-        jButton22 = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,13 +170,13 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Georgia", 3, 50)); // NOI18N
         jLabel37.setText("Datos");
-        jPanel9.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(1347, 97, -1, 55));
+        jPanel9.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 90, -1, 55));
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/xls-file_9680334 (1).png"))); // NOI18N
-        jPanel9.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1567, 13, 85, 65));
+        jPanel9.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 10, 85, 65));
 
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo-pdf.png"))); // NOI18N
-        jPanel9.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1567, 97, 85, 65));
+        jPanel9.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 80, 85, 65));
 
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -144,7 +211,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel63.setFont(new java.awt.Font("Georgia", 3, 50)); // NOI18N
         jLabel63.setForeground(new java.awt.Color(204, 102, 0));
         jLabel63.setText("Exportar");
-        jPanel9.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1302, 24, 242, 55));
+        jPanel9.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 20, 242, 55));
 
         jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel39.setText("NIT: 0012023014403-12");
@@ -159,17 +226,17 @@ public class Empleados extends javax.swing.JFrame {
         jLabel44.setText("Telefono");
         jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
 
-        Cliente_Telefono.setText("\n");
-        Cliente_Telefono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 200, 32));
+        Empleado_Telefono.setText("\n");
+        Empleado_Telefono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 200, 32));
 
-        Cliente_Email.setText(" ");
-        Cliente_Email.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 200, 32));
+        Empleado_Email.setText(" ");
+        Empleado_Email.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 200, 32));
 
-        Cliente_Direccion.setText(" ");
-        Cliente_Direccion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 554, 60));
+        Empleado_Direccion.setText(" ");
+        Empleado_Direccion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 554, 60));
 
         jLabel45.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/identificacion.png"))); // NOI18N
@@ -202,16 +269,17 @@ public class Empleados extends javax.swing.JFrame {
         jLabel51.setText("Direccion");
         jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
 
-        Cliente_Cedula.setText("\n");
-        Cliente_Cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, 32));
+        Empleado_Cedula.setText("\n");
+        Empleado_Cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, 32));
 
-        Cliente_Nombres.setText("\n");
-        Cliente_Nombres.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 32));
+        Empleado_Nombres.setText("\n");
+        Empleado_Nombres.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 32));
 
-        Cliente_Genero.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 181, 32));
+        Empleado_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        Empleado_Genero.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(Empleado_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 181, 32));
         jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 450, 22));
         jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 169, 22));
 
@@ -221,33 +289,25 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 200, 22));
         jPanel1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, 200, 22));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Empleado = new javax.swing.JTable(){
+            public boolean isCellEditable(int row , int col){
+                return false;
+            }
+        };
+        Tabla_Empleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "FechaNacimiento", "FechaIngreso"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            }
+        ));
+        Tabla_Empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabla_EmpleadoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
-        }
+        jScrollPane1.setViewportView(Tabla_Empleado);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 80, 742, 490));
 
@@ -255,27 +315,38 @@ public class Empleados extends javax.swing.JFrame {
         jSeparator14.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(916, 25, 9, 530));
 
-        jButton4.setBackground(new java.awt.Color(255, 102, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 90, 49));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, 581, 30));
+        Buscar.setBackground(new java.awt.Color(255, 102, 0));
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 90, 49));
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        Empleado_Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Empleado_BuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 238, 100, 70));
+        jPanel1.add(Empleado_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, 581, 30));
+
+        Actualizar.setBackground(new java.awt.Color(255, 102, 0));
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 238, 100, 70));
 
         jLabel57.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel57.setText("Actualizar");
         jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 314, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario (3).png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 93, 100, 70));
+        Agregar.setBackground(new java.awt.Color(255, 102, 0));
+        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario (3).png"))); // NOI18N
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 93, 100, 70));
 
         jLabel58.setBackground(new java.awt.Color(255, 102, 0));
         jLabel58.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -286,30 +357,35 @@ public class Empleados extends javax.swing.JFrame {
         jLabel59.setText("Eliminar");
         jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 459, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 102, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura.png"))); // NOI18N
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 383, 100, 70));
+        Eliminar.setBackground(new java.awt.Color(255, 102, 0));
+        Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura.png"))); // NOI18N
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 383, 100, 70));
 
         jLabel62.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/calendario.png"))); // NOI18N
         jLabel62.setText("Fecha De Ingreso");
         jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
-        Empleado_Fechan1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Empleado_Fechan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 200, 32));
+        Empleado_FechaR.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(Empleado_FechaR, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 200, 32));
         jPanel1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 200, 22));
 
         jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 25, 15, 557));
 
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
+        Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 44, 35));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 44, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -327,20 +403,137 @@ public class Empleados extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton22ActionPerformed
+    }//GEN-LAST:event_SalirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        try {
+            Conn.Conexionpostgres();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String U = "UPDATE public.\"Empleado\" SET "
+                + "\"Cedula\" = '" + Empleado_Cedula.getText() + "',"
+                + "\"Nombre\" = '" + Empleado_Nombres.getText() + "',"
+                + "\"FechaDeNacimiento\" = '" + new java.sql.Date(Empleado_Fechan.getDate().getTime()) + "',"
+                + "\"Genero\" = '" + Empleado_Genero.getSelectedItem().toString() + "',"
+                + "\"Telefono\" = '" + Empleado_Telefono.getText() + "',"
+                + "\"Email\" = '" + Empleado_Email.getText() + "',"
+                + "\"Direccion\" = '" + Empleado_Direccion.getText() + "',"
+                + "\"FechaDeIngreso\" = '" + new java.sql.Date(Empleado_FechaR.getDate().getTime()) + "'"
+                + "WHERE \"Cedula\" = '" + Empleado_Cedula.getText() + "'";
+        try {
+            Conn.Actualizar(U);
+            CargarDatos();
+            Conn.cerrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Empleado_Cedula.setText("");
+        Empleado_Nombres.setText("");
+        Empleado_Fechan.setDate(null);
+        Empleado_Genero.setSelectedItem(null);
+        Empleado_Telefono.setText("");
+        Empleado_Email.setText("");
+        Empleado_Direccion.setText("");
+        Empleado_FechaR.setDate(null);
+
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        try {
+            Conn.Conexionpostgres();
+
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Empleados.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        String A = "INSERT INTO \"Empleado\"(\n"
+                + " \"Cedula\",\"Nombre\",\"FechaDeNacimiento\",\"Genero\",\"Telefono\",\"Email\",\"Direccion\",\"FechaDeIngreso\")" + "VALUES ('" + Empleado_Cedula.getText() + "','" + Empleado_Nombres.getText() + "','" + Empleado_Fechan.getDate() + "','" + Empleado_Genero.getSelectedItem() + "','" + Empleado_Telefono.getText() + "','" + Empleado_Email.getText() + "','" + Empleado_Direccion.getText() + "','" + Empleado_FechaR.getDate() + "');";
+
+        try {
+            Conn.Actualizar(A);
+            CargarDatos();
+            Conn.cerrar();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Empleado_Cedula.setText("");
+        Empleado_Nombres.setText("");
+        Empleado_Fechan.setDate(null);
+        Empleado_Genero.setSelectedItem(null);
+        Empleado_Telefono.setText("");
+        Empleado_Email.setText("");
+        Empleado_Direccion.setText("");
+        Empleado_FechaR.setDate(null);
+
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int filaseleccionada = Tabla_Empleado.getSelectedRow();
+        if (filaseleccionada >= 0) {
+
+            int ValorEliminar = Integer.parseInt(Y.getValueAt(filaseleccionada, 0).toString());
+            Y.removeRow(filaseleccionada);
+
+            try {
+                Conn.Conexionpostgres();
+
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(Clientes.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+
+            String E = "DELETE FROM public.\"Empleado\"\n" + "WHERE \"Cedula\"=" + (ValorEliminar);
+
+            try {
+                Conn.Actualizar(E);
+                Conn.cerrar();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Clientes.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void Empleado_BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Empleado_BuscarKeyReleased
+        String Cad = Empleado_Buscar.getText().trim();
+        Sugerencia(Cad);
+    }//GEN-LAST:event_Empleado_BuscarKeyReleased
+
+    private void Tabla_EmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_EmpleadoMouseClicked
+        int fila = Tabla_Empleado.getSelectedRow();
+
+        if (fila >= 0) {
+            Empleado_Cedula.setText(Tabla_Empleado.getValueAt(fila, 0).toString());
+            Empleado_Nombres.setText(Tabla_Empleado.getValueAt(fila, 1).toString());
+            Empleado_Genero.setSelectedItem(Tabla_Empleado.getValueAt(fila, 2).toString());
+            Empleado_Direccion.setText(Tabla_Empleado.getValueAt(fila, 3).toString());
+            Empleado_Email.setText(Tabla_Empleado.getValueAt(fila, 4).toString());
+            Empleado_Telefono.setText(Tabla_Empleado.getValueAt(fila, 5).toString());
+
+            java.sql.Date fecha = (java.sql.Date) Tabla_Empleado.getValueAt(fila, 6);
+            java.util.Date fechatransformada = new java.util.Date(fecha.getTime());
+            Empleado_Fechan.setDate(fechatransformada);
+
+            java.sql.Date fecha2 = (java.sql.Date) Tabla_Empleado.getValueAt(fila, 7);
+            java.util.Date fechatransformada2 = new java.util.Date(fecha2.getTime());
+            Empleado_FechaR.setDate(fechatransformada2);
+        }
+    }//GEN-LAST:event_Tabla_EmpleadoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -371,22 +564,24 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Cliente_Cedula;
-    private javax.swing.JTextField Cliente_Direccion;
-    private javax.swing.JTextField Cliente_Email;
-    private javax.swing.JComboBox<String> Cliente_Genero;
-    private javax.swing.JTextField Cliente_Nombres;
-    private javax.swing.JTextField Cliente_Telefono;
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JTextField Empleado_Buscar;
+    private javax.swing.JTextField Empleado_Cedula;
+    private javax.swing.JTextField Empleado_Direccion;
+    private javax.swing.JTextField Empleado_Email;
+    private com.toedter.calendar.JDateChooser Empleado_FechaR;
     private com.toedter.calendar.JDateChooser Empleado_Fechan;
-    private com.toedter.calendar.JDateChooser Empleado_Fechan1;
+    private javax.swing.JComboBox<String> Empleado_Genero;
+    private javax.swing.JTextField Empleado_Nombres;
+    private javax.swing.JTextField Empleado_Telefono;
     private javax.swing.JTextField Fecha_6;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Salir;
+    private javax.swing.JTable Tabla_Empleado;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -421,7 +616,5 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

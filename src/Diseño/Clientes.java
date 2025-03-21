@@ -4,7 +4,6 @@
  */
 package Diseño;
 
-import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 // import java.awt.Rectangle;
@@ -14,10 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import Archivos_Planos.Conexion;
 
 public class Clientes extends javax.swing.JFrame {
 
     Conexion Conn = new Conexion("postgres", "123456789", "Cafeteria", "5432", "localhost");
+
     DefaultTableModel X = new DefaultTableModel();
     fecha f1 = new fecha();
 
@@ -362,39 +363,15 @@ public class Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cedula", "Nombres", "Genero", "Direccion", "Email", "Telefono", "FechaNacimiento"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         Tabla_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Tabla_ClientesMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(Tabla_Clientes);
-        if (Tabla_Clientes.getColumnModel().getColumnCount() > 0) {
-            Tabla_Clientes.getColumnModel().getColumn(0).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(1).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(2).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(3).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(4).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(5).setResizable(false);
-            Tabla_Clientes.getColumnModel().getColumn(6).setResizable(false);
-        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 79, 701, 489));
 
@@ -499,22 +476,10 @@ public class Clientes extends javax.swing.JFrame {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         try {
             Conn.Conexionpostgres();
-
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Clientes.class
                     .getName()).log(Level.SEVERE, null, ex);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Clientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Clientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Clientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
         String A = "INSERT INTO \"Cliente\"(\n"
                 + "	\"Cedula\", \"Nombre\", \"FechaDeNacimiento\", \"Genero\", \"Telefono\", \"Email\", \"Direccion\")" + " VALUES ('" + Cliente_Cedula.getText()
@@ -523,6 +488,7 @@ public class Clientes extends javax.swing.JFrame {
 
         try {
             Conn.Actualizar(A);
+            CargarDatos();
             Conn.cerrar();
 
         } catch (SQLException ex) {
@@ -604,6 +570,7 @@ public class Clientes extends javax.swing.JFrame {
 
         try {
             Conn.Actualizar(U);
+            CargarDatos();
             Conn.cerrar();
         } catch (SQLException ex) {
             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -620,7 +587,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-       /* long Cedula = Long.parseLong(Cliente_Buscar.getText());
+        /* long Cedula = Long.parseLong(Cliente_Buscar.getText());
 
         try {
             Conn.Conexionpostgres();
