@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
 
-    String USER, PASSWORD, NOMBRE, PUERTO, iP;
     Statement sentencia;
-    Connection conexion = null;
+    Connection conexion;
+    String USER, PASSWORD, NOMBRE, PUERTO, iP;
 
     public Conexion(String USER, String PASSWORD, String NOMBRE, String PUERTO, String iP) {
         this.USER = USER;
@@ -27,19 +27,6 @@ public class Conexion {
         this.NOMBRE = NOMBRE;
         this.PUERTO = PUERTO;
         this.iP = iP;
-    }
-
-    public Connection getConexion() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://" + ":" + PUERTO + "/" + NOMBRE;
-            conexion = DriverManager.getConnection(url, USER, PASSWORD);
-            JOptionPane.showMessageDialog(null, "Conexion Exitosa");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        }
-        return conexion;
     }
 
     public void Conectar(String Driver, String Puente, boolean sw) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -58,10 +45,23 @@ public class Conexion {
 
     }
 
-    public void cerrar() throws SQLException {
-        getConexion().close();
+    /*    public Connection getConexion() {
+    try {
+    Class.forName("org.postgresql.Driver");
+    String url = "jdbc:postgresql://" + ":" + PUERTO + "/" + NOMBRE;
+    conexion = DriverManager.getConnection(url, USER, PASSWORD);
+    JOptionPane.showMessageDialog(null, "Conexion Exitosa");
+    } catch (Exception e) {
+    JOptionPane.showMessageDialog(null, e.getMessage());
+    
     }
-
+    return conexion;
+    }
+    
+    public void cerrar() throws SQLException {
+    getConexion().close();
+    }*/
+    
     public ResultSet Consultar(String Consulta) throws SQLException {
         return (sentencia.executeQuery(Consulta));
     }
@@ -69,9 +69,10 @@ public class Conexion {
     public void Actualizar(String Actualiza) throws SQLException {
         sentencia.executeUpdate(Actualiza);
     }
+
     public int Actualizar1(String Actualiza) throws SQLException {
         int S = (sentencia.executeUpdate(Actualiza));
-        
+
         return S;
     }
 
@@ -79,5 +80,14 @@ public class Conexion {
             SQLException, InstantiationException, IllegalAccessException {
         Conectar("org.postgresql.Driver", "postgresql", true);
 
+    }
+
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void cerrar() throws SQLException {
+        conexion.close();
+        sentencia.close();
     }
 }

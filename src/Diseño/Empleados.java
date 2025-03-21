@@ -66,7 +66,7 @@ public class Empleados extends javax.swing.JFrame {
         Cliente_Genero = new javax.swing.JComboBox<>();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        Cliente_Fechan = new com.toedter.calendar.JDateChooser();
+        Empleado_Fechan = new com.toedter.calendar.JDateChooser();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
@@ -82,7 +82,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel62 = new javax.swing.JLabel();
-        Cliente_Fechan1 = new com.toedter.calendar.JDateChooser();
+        Empleado_Fechan1 = new com.toedter.calendar.JDateChooser();
         jLabel61 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
         jButton22 = new javax.swing.JButton();
@@ -215,8 +215,8 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 450, 22));
         jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 169, 22));
 
-        Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 200, 32));
+        Empleado_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(Empleado_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 200, 32));
         jPanel1.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 200, 22));
         jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 200, 22));
         jPanel1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, 200, 22));
@@ -295,8 +295,8 @@ public class Empleados extends javax.swing.JFrame {
         jLabel62.setText("Fecha De Ingreso");
         jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
-        Cliente_Fechan1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 200, 32));
+        Empleado_Fechan1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(Empleado_Fechan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 200, 32));
         jPanel1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 200, 22));
 
         jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
@@ -374,11 +374,11 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTextField Cliente_Cedula;
     private javax.swing.JTextField Cliente_Direccion;
     private javax.swing.JTextField Cliente_Email;
-    private com.toedter.calendar.JDateChooser Cliente_Fechan;
-    private com.toedter.calendar.JDateChooser Cliente_Fechan1;
     private javax.swing.JComboBox<String> Cliente_Genero;
     private javax.swing.JTextField Cliente_Nombres;
     private javax.swing.JTextField Cliente_Telefono;
+    private com.toedter.calendar.JDateChooser Empleado_Fechan;
+    private com.toedter.calendar.JDateChooser Empleado_Fechan1;
     private javax.swing.JTextField Fecha_6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

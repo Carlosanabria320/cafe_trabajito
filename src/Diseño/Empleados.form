@@ -497,7 +497,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="Cliente_Fechan">
+        <Component class="com.toedter.calendar.JDateChooser" name="Empleado_Fechan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -748,7 +748,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="Cliente_Fechan1">
+        <Component class="com.toedter.calendar.JDateChooser" name="Empleado_Fechan1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>

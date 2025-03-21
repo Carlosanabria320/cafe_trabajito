@@ -7,7 +7,7 @@ package Diseño;
 import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
-import java.awt.Rectangle;
+// import java.awt.Rectangle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,7 +31,6 @@ public class Clientes extends javax.swing.JFrame {
         X.setColumnIdentifiers(ids);
         Tabla_Clientes.setModel(X);
         CargarDatos();
-
     }
 
     public void mostrarfecha() {
@@ -50,7 +49,7 @@ public class Clientes extends javax.swing.JFrame {
             Tabla_Clientes.setModel(ModeloCliente);
 
             while (Rs.next()) {
-                X.addRow(new Object[]{
+                ModeloCliente.addRow(new Object[]{
                     Rs.getLong("Cedula"),
                     Rs.getString("Nombre"),
                     Rs.getString("Genero"),
@@ -70,7 +69,7 @@ public class Clientes extends javax.swing.JFrame {
 
     }
 
-    private void CargarDatos() {
+    public void CargarDatos() {
         X.setRowCount(0);
         try {
             Conn.Conexionpostgres();
@@ -89,6 +88,7 @@ public class Clientes extends javax.swing.JFrame {
 
                 });
             }
+            Rs.close();
             Conn.cerrar();
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
@@ -137,7 +137,6 @@ public class Clientes extends javax.swing.JFrame {
         Cliente_Genero = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        Cliente_Fechan = new com.toedter.calendar.JDateChooser();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -153,6 +152,7 @@ public class Clientes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JButton();
         Salida = new javax.swing.JButton();
+        Cliente_Fechan = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -348,9 +348,6 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1.add(Cliente_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 150, 32));
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 450, 22));
         jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 169, 22));
-
-        Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 200, 32));
         jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 200, 22));
         jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 200, 22));
         jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 200, 22));
@@ -469,6 +466,9 @@ public class Clientes extends javax.swing.JFrame {
         });
         jPanel1.add(Salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 6, 44, 35));
 
+        Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 200, 32));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -529,6 +529,15 @@ public class Clientes extends javax.swing.JFrame {
             Logger.getLogger(Clientes.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+
+        Cliente_Cedula.setText("");
+        Cliente_Nombres.setText("");
+        Cliente_Fechan.setDate(null);
+        Cliente_Genero.setSelectedItem(null);
+        Cliente_Telefono.setText("");
+        Cliente_Email.setText("");
+        Cliente_Direccion.setText("");
+
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void Tabla_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_ClientesMouseClicked
@@ -549,7 +558,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
 
     private void Cliente_BuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Cliente_BuscarKeyReleased
-        String Cad = Buscar.getText().trim();
+        String Cad = Cliente_Buscar.getText().trim();
         Sugerencia(Cad);
     }//GEN-LAST:event_Cliente_BuscarKeyReleased
 
@@ -599,17 +608,26 @@ public class Clientes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        Cliente_Cedula.setText("");
+        Cliente_Nombres.setText("");
+        Cliente_Fechan.setDate(null);
+        Cliente_Genero.setSelectedItem(null);
+        Cliente_Telefono.setText("");
+        Cliente_Email.setText("");
+        Cliente_Direccion.setText("");
+
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        long Cedula = Long.parseLong(Cliente_Buscar.getText());
-        
+       /* long Cedula = Long.parseLong(Cliente_Buscar.getText());
+
         try {
             Conn.Conexionpostgres();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         String B = "SELECT FROM \"Cliente\" " + "WHERE \"Cedula\" = '" + Cliente_Cedula.getText() + "'";
         try (ResultSet Rs = Conn.Consultar(B)) {
             if (Rs.next()) {
@@ -627,7 +645,7 @@ public class Clientes extends javax.swing.JFrame {
             Conn.cerrar();
         } catch (SQLException ex) {
             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_BuscarActionPerformed
 
     /**
