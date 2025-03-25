@@ -7,6 +7,7 @@ package Diseño;
 import Archivos_Planos.Conexion;
 import Archivos_Planos.fecha;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -89,9 +90,6 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Cliente_Telefono = new javax.swing.JTextField();
-        Cliente_Email = new javax.swing.JTextField();
-        Cliente_Direccion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -99,9 +97,6 @@ public class Clientes extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        Cliente_Cedula = new javax.swing.JTextField();
-        Cliente_Nombres = new javax.swing.JTextField();
-        Cliente_Genero = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         Cliente_Fechan = new com.toedter.calendar.JDateChooser();
@@ -112,7 +107,6 @@ public class Clientes extends javax.swing.JFrame {
         Tabla_Clientes = new javax.swing.JTable();
         jSeparator4 = new javax.swing.JSeparator();
         Buscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         Actualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
@@ -120,6 +114,13 @@ public class Clientes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JButton();
         Salida = new javax.swing.JButton();
+        Cliente_Cedula = new javax.swing.JTextField();
+        Cliente_Email = new javax.swing.JTextField();
+        Cliente_Genero = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        Cliente_Direccion = new javax.swing.JTextField();
+        Cliente_Telefono = new javax.swing.JTextField();
+        Cliente_Nombres2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,24 +253,12 @@ public class Clientes extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 200, 22));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 200, 22));
 
         jLabel9.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/telefono.png"))); // NOI18N
         jLabel9.setText("Telefono");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
-
-        Cliente_Telefono.setText("\n");
-        Cliente_Telefono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 200, 32));
-
-        Cliente_Email.setText(" ");
-        Cliente_Email.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 200, 32));
-
-        Cliente_Direccion.setText(" ");
-        Cliente_Direccion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 580, 60));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/identificacion.png"))); // NOI18N
@@ -290,7 +279,7 @@ public class Clientes extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lavabo.png"))); // NOI18N
         jLabel8.setText("Genero");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 100, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 100, -1));
 
         jLabel10.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/direccion-de-correo-electronico.png"))); // NOI18N
@@ -301,26 +290,14 @@ public class Clientes extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gps.png"))); // NOI18N
         jLabel11.setText("Direccion");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        Cliente_Cedula.setText("\n");
-        Cliente_Cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 150, 32));
-
-        Cliente_Nombres.setText("\n");
-        Cliente_Nombres.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 200, 32));
-
-        Cliente_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
-        Cliente_Genero.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 150, 32));
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 450, 22));
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 169, 22));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 580, 22));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 150, 22));
 
         Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 200, 32));
+        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 200, 38));
         jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 200, 22));
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 200, 22));
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 200, 22));
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 200, 22));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 200, 22));
 
         Tabla_Clientes = new javax.swing.JTable(){
             public boolean isCellEditable(int row , int col){
@@ -366,26 +343,19 @@ public class Clientes extends javax.swing.JFrame {
             Tabla_Clientes.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 79, 701, 489));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 79, 710, 489));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(746, 11, 11, 557));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 11, -1, 557));
 
         Buscar.setBackground(new java.awt.Color(255, 102, 0));
         Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 50));
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 517, 30));
-
         Actualizar.setBackground(new java.awt.Color(255, 102, 0));
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
-        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 467, 120, 70));
+        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 467, 130, 76));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel13.setText("Actualizar");
@@ -398,7 +368,7 @@ public class Clientes extends javax.swing.JFrame {
                 AgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 467, 120, 70));
+        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 467, 130, 76));
 
         jLabel12.setBackground(new java.awt.Color(255, 102, 0));
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -411,7 +381,7 @@ public class Clientes extends javax.swing.JFrame {
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 0));
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura.png"))); // NOI18N
-        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 467, 120, 70));
+        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 467, 130, 76));
 
         Salida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (2).png"))); // NOI18N
         Salida.addActionListener(new java.awt.event.ActionListener() {
@@ -419,7 +389,16 @@ public class Clientes extends javax.swing.JFrame {
                 SalidaActionPerformed(evt);
             }
         });
-        jPanel1.add(Salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 6, 44, 35));
+        jPanel1.add(Salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(674, 6, 60, 50));
+        jPanel1.add(Cliente_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 150, 40));
+        jPanel1.add(Cliente_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 200, 40));
+
+        Cliente_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jPanel1.add(Cliente_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 150, 40));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 500, 40));
+        jPanel1.add(Cliente_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 580, 68));
+        jPanel1.add(Cliente_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 200, 40));
+        jPanel1.add(Cliente_Nombres2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 200, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -470,7 +449,7 @@ public class Clientes extends javax.swing.JFrame {
         }
         String A = "INSERT INTO \"Cliente\"(\n"
                 + "	\"Cedula\", \"Nombre\", \"FechaDeNacimiento\", \"Genero\", \"Telefono\", \"Email\", \"Direccion\")" + " VALUES ('" + Cliente_Cedula.getText()
-                + "', '" + Cliente_Nombres.getText() + "', '" + Cliente_Fechan.getDate() + "', '" + Cliente_Genero.getSelectedItem() + "', '" + Cliente_Telefono.getText() + "', '"
+                + "', '" + Cliente_Email.getText() + "', '" + Cliente_Fechan.getDate() + "', '" + Cliente_Genero.getSelectedItem() + "', '" + Cliente_Telefono.getText() + "', '"
                 + Cliente_Email.getText() + "','" + Cliente_Direccion.getText() + "');";
 
         try {
@@ -488,7 +467,7 @@ public class Clientes extends javax.swing.JFrame {
 
         if (fila >= 0) {
             Cliente_Cedula.setText(Tabla_Clientes.getValueAt(fila, 0).toString());
-            Cliente_Nombres.setText(Tabla_Clientes.getValueAt(fila, 1).toString());
+            Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 1).toString());
             Cliente_Genero.setSelectedItem(Tabla_Clientes.getValueAt(fila, 2).toString());
             Cliente_Direccion.setText(Tabla_Clientes.getValueAt(fila, 3).toString());
             Cliente_Email.setText(Tabla_Clientes.getValueAt(fila, 4).toString());
@@ -496,11 +475,6 @@ public class Clientes extends javax.swing.JFrame {
             Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 6).toString());
         }
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
-
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-
-
-    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -516,6 +490,8 @@ public class Clientes extends javax.swing.JFrame {
 
             FlatLightOwlIJTheme.setup();
             UIManager.put("Button.arc", 200);
+            UIManager.put("TextComponent.arc", 100);
+            UIManager.put("Component.arc", 100);
 
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
@@ -539,7 +515,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField Cliente_Email;
     private com.toedter.calendar.JDateChooser Cliente_Fechan;
     private javax.swing.JComboBox<String> Cliente_Genero;
-    private javax.swing.JTextField Cliente_Nombres;
+    private javax.swing.JTextField Cliente_Nombres2;
     private javax.swing.JTextField Cliente_Telefono;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTextField Fecha_1;

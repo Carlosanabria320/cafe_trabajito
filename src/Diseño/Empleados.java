@@ -51,9 +51,6 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        Cliente_Telefono = new javax.swing.JTextField();
-        Cliente_Email = new javax.swing.JTextField();
-        Cliente_Direccion = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
@@ -61,9 +58,6 @@ public class Empleados extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        Cliente_Cedula = new javax.swing.JTextField();
-        Cliente_Nombres = new javax.swing.JTextField();
-        Cliente_Genero = new javax.swing.JComboBox<>();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         Cliente_Fechan = new com.toedter.calendar.JDateChooser();
@@ -74,7 +68,7 @@ public class Empleados extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jSeparator14 = new javax.swing.JSeparator();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        Cliente_Cedula = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel57 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -86,6 +80,12 @@ public class Empleados extends javax.swing.JFrame {
         jLabel61 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
         jButton22 = new javax.swing.JButton();
+        Cliente_Nombres = new javax.swing.JTextField();
+        Cliente_Direccion = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        Cliente_Email = new javax.swing.JTextField();
+        Cliente_Telefono = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,7 +99,7 @@ public class Empleados extends javax.swing.JFrame {
 
         jSeparator12.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator12.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel9.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 21, 13, 125));
+        jPanel9.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 13, 125));
 
         jLabel37.setFont(new java.awt.Font("Georgia", 3, 50)); // NOI18N
         jLabel37.setText("Datos");
@@ -113,7 +113,7 @@ public class Empleados extends javax.swing.JFrame {
 
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel9.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1271, 24, 13, 128));
+        jPanel9.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 20, 13, 128));
 
         Fecha_6.setEditable(false);
         Fecha_6.setBackground(new java.awt.Color(255, 255, 255));
@@ -152,30 +152,18 @@ public class Empleados extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 200, 22));
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, 200, 22));
 
         jLabel44.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/telefono.png"))); // NOI18N
         jLabel44.setText("Telefono");
         jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
 
-        Cliente_Telefono.setText("\n");
-        Cliente_Telefono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 200, 32));
-
-        Cliente_Email.setText(" ");
-        Cliente_Email.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 200, 32));
-
-        Cliente_Direccion.setText(" ");
-        Cliente_Direccion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 554, 60));
-
         jLabel45.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/identificacion.png"))); // NOI18N
         jLabel45.setText("Cedula");
         jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, 30));
-        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 150, 22));
+        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 170, 22));
 
         jLabel47.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perfil (1).png"))); // NOI18N
@@ -190,7 +178,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lavabo.png"))); // NOI18N
         jLabel49.setText("Genero");
-        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 100, -1));
+        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 100, -1));
 
         jLabel50.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/direccion-de-correo-electronico.png"))); // NOI18N
@@ -201,24 +189,13 @@ public class Empleados extends javax.swing.JFrame {
         jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gps.png"))); // NOI18N
         jLabel51.setText("Direccion");
         jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
-
-        Cliente_Cedula.setText("\n");
-        Cliente_Cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, 32));
-
-        Cliente_Nombres.setText("\n");
-        Cliente_Nombres.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 32));
-
-        Cliente_Genero.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(Cliente_Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 181, 32));
-        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 450, 22));
-        jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 169, 22));
+        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 550, 22));
+        jPanel1.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 180, 22));
 
         Cliente_Fechan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 200, 32));
+        jPanel1.add(Cliente_Fechan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 200, 40));
         jPanel1.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 200, 22));
-        jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 200, 22));
+        jPanel1.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 230, 22));
         jPanel1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, 200, 22));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,7 +235,9 @@ public class Empleados extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 102, 0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 90, 49));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, 581, 30));
+
+        Cliente_Cedula.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(Cliente_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 170, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 102, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
@@ -267,37 +246,37 @@ public class Empleados extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 238, 100, 70));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 238, 110, 80));
 
         jLabel57.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel57.setText("Actualizar");
-        jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 314, -1, -1));
+        jPanel1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 102, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario (3).png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 93, 100, 70));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 93, 110, 80));
 
         jLabel58.setBackground(new java.awt.Color(255, 102, 0));
         jLabel58.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel58.setText("Agregar");
-        jPanel1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 169, -1, -1));
+        jPanel1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         jLabel59.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel59.setText("Eliminar");
-        jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 459, -1, -1));
+        jPanel1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 102, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura.png"))); // NOI18N
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 383, 100, 70));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 383, 110, 80));
 
         jLabel62.setFont(new java.awt.Font("Roboto Light", 0, 20)); // NOI18N
         jLabel62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/calendario.png"))); // NOI18N
         jLabel62.setText("Fecha De Ingreso");
-        jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
+        jPanel1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, -1, -1));
 
         Cliente_Fechan1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(Cliente_Fechan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 200, 32));
-        jPanel1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 200, 22));
+        jPanel1.add(Cliente_Fechan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 200, 40));
+        jPanel1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 200, 22));
 
         jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -309,7 +288,23 @@ public class Empleados extends javax.swing.JFrame {
                 jButton22ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 44, 35));
+        jPanel1.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 20, 50, 50));
+
+        Cliente_Nombres.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(Cliente_Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 230, 40));
+
+        Cliente_Direccion.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(Cliente_Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 560, 70));
+
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 180, 40));
+
+        Cliente_Email.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(Cliente_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 200, 40));
+
+        Cliente_Telefono.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPanel1.add(Cliente_Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 200, 40));
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, 581, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,6 +351,8 @@ public class Empleados extends javax.swing.JFrame {
 
             FlatLightOwlIJTheme.setup();
             UIManager.put("Button.arc", 200);
+            UIManager.put("TextComponent.arc", 100);
+            UIManager.put("Component.arc", 100);
 
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
@@ -376,7 +373,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTextField Cliente_Email;
     private com.toedter.calendar.JDateChooser Cliente_Fechan;
     private com.toedter.calendar.JDateChooser Cliente_Fechan1;
-    private javax.swing.JComboBox<String> Cliente_Genero;
     private javax.swing.JTextField Cliente_Nombres;
     private javax.swing.JTextField Cliente_Telefono;
     private javax.swing.JTextField Fecha_6;
@@ -387,6 +383,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -422,6 +419,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
