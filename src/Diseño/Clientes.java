@@ -133,7 +133,7 @@ public class Clientes extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 3, 45)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 45)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 102, 0));
         jLabel2.setText("Exportar ");
 
@@ -158,9 +158,9 @@ public class Clientes extends javax.swing.JFrame {
         jLabel20.setText("Clientes");
 
         jLabel21.setFont(new java.awt.Font("Georgia", 3, 45)); // NOI18N
-        jLabel21.setText("ESPUMA");
+        jLabel21.setText("ESPÚMA");
 
-        jLabel16.setFont(new java.awt.Font("Georgia", 3, 45)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Georgia", 1, 45)); // NOI18N
         jLabel16.setText("Datos");
 
         jLabel22.setFont(new java.awt.Font("Georgia", 0, 40)); // NOI18N
@@ -207,11 +207,11 @@ public class Clientes extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel16)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,6 +355,11 @@ public class Clientes extends javax.swing.JFrame {
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 0));
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 467, 130, 76));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -407,7 +412,7 @@ public class Clientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -475,6 +480,10 @@ public class Clientes extends javax.swing.JFrame {
             Cliente_Fechan.setDateFormatString(Tabla_Clientes.getValueAt(fila, 6).toString());
         }
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActualizarActionPerformed
 
     /**
      * @param args the command line arguments

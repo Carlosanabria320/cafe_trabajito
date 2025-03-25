@@ -75,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel12.setText("&");
 
         jLabel13.setFont(new java.awt.Font("Georgia", 1, 85)); // NOI18N
-        jLabel13.setText("ESPUMA");
+        jLabel13.setText("ESPÚMA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

@@ -70,6 +70,7 @@ public class Categorias extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel37.setFont(new java.awt.Font("Impact", 0, 60)); // NOI18N
         jLabel37.setText("Datos");

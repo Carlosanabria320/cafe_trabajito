@@ -95,13 +95,13 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel36.setFont(new java.awt.Font("Georgia", 3, 43)); // NOI18N
         jLabel36.setText("AROMA");
-        jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 47));
+        jPanel9.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 47));
 
         jSeparator12.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator12.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel9.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 13, 125));
 
-        jLabel37.setFont(new java.awt.Font("Georgia", 3, 50)); // NOI18N
+        jLabel37.setFont(new java.awt.Font("Georgia", 1, 50)); // NOI18N
         jLabel37.setText("Datos");
         jPanel9.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(1347, 97, -1, 55));
 
@@ -109,7 +109,7 @@ public class Empleados extends javax.swing.JFrame {
         jPanel9.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1567, 13, 85, 65));
 
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo-pdf.png"))); // NOI18N
-        jPanel9.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1567, 97, 85, 65));
+        jPanel9.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 90, 85, 65));
 
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -129,7 +129,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Georgia", 1, 35)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(204, 102, 0));
         jLabel40.setText("&");
-        jPanel9.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanel9.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Impact", 0, 90)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(204, 102, 0));
@@ -138,10 +138,10 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel42.setFont(new java.awt.Font("Georgia", 3, 43)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel42.setText("PERFUME");
-        jPanel9.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, 55));
+        jLabel42.setText("ESPÚMA");
+        jPanel9.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, 55));
 
-        jLabel63.setFont(new java.awt.Font("Georgia", 3, 50)); // NOI18N
+        jLabel63.setFont(new java.awt.Font("Georgia", 1, 50)); // NOI18N
         jLabel63.setForeground(new java.awt.Color(204, 102, 0));
         jLabel63.setText("Exportar");
         jPanel9.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1302, 24, 242, 55));
@@ -312,15 +312,15 @@ public class Empleados extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1679, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 1679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1679, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
